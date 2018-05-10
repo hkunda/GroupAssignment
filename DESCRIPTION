@@ -1,7 +1,7 @@
 Package: GroupAssignment
 Type: Package
 Title: Minimum Cost Group Matching Implementation
-Version: 1.0
+Version: 1.0.1
 Author: Hemant Kunda
 Maintainer: Hemant Kunda <hkunda@usc.edu>
 Description: Finds the optimal matching of members to groups across all possible groups
@@ -15,3 +15,5 @@ Depends: R (>= 3.4.2)
 LinkingTo: Rcpp
 Imports: Rcpp
 RoxygenNote: 6.0.1.9000
+SystemRequirements: C++11
+

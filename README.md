@@ -58,5 +58,14 @@ ans <- optimalAssignment(d, leaders = 3, minGroupSize = 2, maxGroupSize = 10)
 ans
 ```
 
+
     ##  [1]   1   4   4   4   4   4   4   4   4   4   1   4  13  13  13   1  13
     ## [18]  13  13   1 198
+
+
+## Change Log
+
+### 1.0.1 - May 10th, 2018
+* Added C++11 to System Requirements
+* Explictly included <memory>
+
