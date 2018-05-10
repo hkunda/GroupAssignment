@@ -26,3 +26,8 @@ Returns a NumericVector of length students+1. The ith element of the output is t
 leading the group that student i is in (for 0 <= i <= N). The N+1st element of the output is the total
 cost of the optimal matching.
 
+## Change Log
+
+### 1.0.1 - May 10th, 2018
+* Added C++11 to System Requirements
+* Explictly included <memory>
