@@ -8,9 +8,10 @@ Description: Finds the optimal matching of members to groups across all possible
     using a C++ implementation of the Hungarian algorithm for minimum cost perfect matching. Users can 
     specify a ranking matrix (where each row corresponds to a member within the group, and each column
     corresponds to a spot on any ranking) and receive the best overall group assignments based on these rankings.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.4.2)
 LinkingTo: Rcpp
 Imports: Rcpp
+RoxygenNote: 6.0.1.9000
