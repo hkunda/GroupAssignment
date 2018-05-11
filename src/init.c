@@ -4,10 +4,10 @@
 #include <R_ext/Rdynload.h>
 
 /* .Call calls */
-extern SEXP _GroupAssignment_optimalAssignment(SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _GroupAssignment_optimalAssignment(SEXP, SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-  {"_GroupAssignment_optimalAssignment", (DL_FUNC) &_GroupAssignment_optimalAssignment, 5},
+  {"_GroupAssignment_optimalAssignment", (DL_FUNC) &_GroupAssignment_optimalAssignment, 4},
   {NULL, NULL, 0}
 };
 

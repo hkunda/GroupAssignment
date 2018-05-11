@@ -552,8 +552,39 @@ std::vector<std::vector<int> > toCostMatrix(const NumericMatrix &input_c, int di
   return costMatrix;
 }
 
+//' Optimal Assignment Algorithm
+//' @param rankings [NumericMatrix]: a matrix of rankings for each student. The
+//' ith row corresponds to student i, and the jth column corresponds to the student
+//' in position j on any student's ranking list. If there are N students, then each
+//' student should have an ID in the range [1,N], which is used both as the row index
+//' (to refer to a student's rankings) and entries of the matrix. For example, if
+//' rankings[i,j] = k, then student i has placed student k in position j on i's ranking.
+//' @param leaders [int]: the number of leaders to pick; equivalently, the number
+//' of groups to form.
+//' @param minGroupSize [int]: the minimum number of students in a group. NOTE:
+//' this value does include the group leader. So if minGroupSize = 4, then every
+//' group must consist of 1 leader and at least 3 other students.
+//' @param maxGroupSize [int]: the maximum number of students in a group. NOTE:
+//' this value does include the group leader. So if maxGroupSize = 6, then every
+//' group must consist of 1 leader and at most 5 other students.
+//' @export
 // [[Rcpp::export]]
-NumericVector optimalAssignment(NumericMatrix rankings, int students, int leaders, int minGroupSize, int maxGroupSize) {
+NumericVector optimalAssignment(
+    NumericMatrix rankings, 
+    int leaders, 
+    int minGroupSize = 1, 
+    int maxGroupSize = -1
+  ) {
+  
+  int students = rankings.nrow();
+  
+  // Checking values
+  if (maxGroupSize < 0)
+    maxGroupSize = (students - leaders + 1);
+  
+  if (leaders*maxGroupSize < students)
+    Rcpp::stop("The number `leaders*maxGroupSize` should be greater or equal than `students`");
+  
   std::vector<bool> permutations(students);
   std::vector<int> groupLeaders;
 
@@ -597,6 +628,10 @@ NumericVector optimalAssignment(NumericMatrix rankings, int students, int leader
     }
     if (DEBUG) std::cout << std::endl;
     const std::vector<int> matching = hungarianMinimumWeightPerfectMatching(costMatrix.size(), edges);
+    
+    // Checking if the user has pressed break
+    Rcpp::checkUserInterrupt();
+    
     int matchCost = matchingCost(matching, costMatrix);
     if (bestCost < 0 || matchCost < bestCost) {
       bestCost = matchCost;
