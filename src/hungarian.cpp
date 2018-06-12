@@ -238,6 +238,9 @@ const std::vector<int> hungarianMinimumWeightPerfectMatching(const int n, const 
     //endregion Inner loop state variables
 
     while (currentMatchingCardinality < n) {
+      
+        // Checking if the user has pressed break
+        Rcpp::checkUserInterrupt();
 
         //region Loop state initialization
 
@@ -282,10 +285,17 @@ const std::vector<int> hungarianMinimumWeightPerfectMatching(const int n, const 
 
         int endingRightNode = UNMATCHED;
         while (endingRightNode == UNMATCHED) {
+          
+            // Checking if the user has pressed break
+            Rcpp::checkUserInterrupt();
 
             //region BFS until match found or no edges to follow
 
             while (endingRightNode == UNMATCHED && !leftNodeQueue.empty()) {
+              
+                // Checking if the user has pressed break
+                Rcpp::checkUserInterrupt();
+              
                 // Implementation note: this could just as easily be a DFS, but a BFS probably
                 // has less edge flipping (by my guess), so we're using a BFS.
 
